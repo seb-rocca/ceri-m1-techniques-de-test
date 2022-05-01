@@ -68,7 +68,7 @@ class IPokedexTest {
 
 
             when(pokedex.getPokemons()).thenReturn(pkmnList);
-            //when(pokedex.getPokemons(pkmnComp.thenComparing(bulbizarrePkmn, aqualiPkmn))).thenReturn(0);
+
         }
         catch (Exception e)
         {
