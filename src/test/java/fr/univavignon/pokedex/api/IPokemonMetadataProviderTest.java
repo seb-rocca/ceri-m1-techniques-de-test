@@ -4,6 +4,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
+import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
@@ -11,8 +13,10 @@ class IPokemonMetadataProviderTest {
 
     IPokemonMetadataProvider pkmnMetadataProvider = Mockito.mock(IPokemonMetadataProvider.class);
 
-    Pokemon bulbizarrePkmn = new Pokemon(0, "Bulbizarre", 126, 126, 90, 613, 64, 4000, 4, 56);
-    Pokemon aqualiPkmn = new Pokemon(133, "Aquali", 186, 168, 260, 2729, 202, 5000, 4, 100);
+    PokemonMetadata bulbizarrePkmn = new PokemonMetadata(0, "Bulbizarre", 126, 126, 90);
+    PokemonMetadata aqualiPkmn = new PokemonMetadata(133, "Aquali", 186, 168, 260);
+
+
 
     @BeforeEach
     void setup()
@@ -21,6 +25,7 @@ class IPokemonMetadataProviderTest {
         {
             when(pkmnMetadataProvider.getPokemonMetadata(0)).thenReturn(bulbizarrePkmn);
             when(pkmnMetadataProvider.getPokemonMetadata(133)).thenReturn(aqualiPkmn);
+
 
         }
         catch (Exception e)
