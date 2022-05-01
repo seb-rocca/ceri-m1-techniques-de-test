@@ -113,7 +113,11 @@ class IPokedexTest {
     void testGetPokemons() {
 
         PokemonComparators pokemonComparators = PokemonComparators.INDEX;
-        assertEquals(-1, pokemonComparators.compare(bulbizarrePkmn, aqualiPkmn));
+        pkmnList.sort(pokemonComparators);
+        ArrayList<Pokemon> listComp = new ArrayList<>();
+        listComp.add(bulbizarrePkmn);
+        listComp.add(aqualiPkmn);
+        assertEquals(pkmnList, listComp);
     }
 
     @org.junit.jupiter.api.Test
