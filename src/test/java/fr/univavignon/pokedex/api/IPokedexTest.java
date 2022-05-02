@@ -5,14 +5,11 @@ import org.mockito.Mockito;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
 
-import javax.swing.plaf.synth.SynthTextAreaUI;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.BDDMockito.then;
 import static org.mockito.Mockito.when;
 
 class IPokedexTest {
@@ -24,16 +21,12 @@ class IPokedexTest {
 
     ArrayList<Pokemon> pkmnList = new ArrayList<>();
 
-
-
     @BeforeEach
     void setup()
     {
         try {
             pkmnList.add(bulbizarrePkmn);
             pkmnList.add(aqualiPkmn);
-
-            PokemonComparators pkmnComp = PokemonComparators.INDEX;
 
             when(pokedex.getPokemon(any(Integer.class))).then(new Answer<Pokemon>() {
                 @Override
@@ -86,7 +79,6 @@ class IPokedexTest {
         {
             System.out.println(e.getStackTrace());
         }
-
     }
 
     @org.junit.jupiter.api.Test
