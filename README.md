@@ -1,5 +1,9 @@
 # UCE Génie Logiciel Avancé : Techniques de tests
 
+## Note pour l'évaluation
+
+Le TP3 se trouve dans la branche "TP3" sur mon fork GitHub personnel (https://github.com/seb-rocca/ceri-m1-techniques-de-test)
+
 ## Introduction
 
 Vous allez à travers ces projet mettre en application une partie des aspects évoqués en cours vis à vis des techniques de tests.  
