@@ -67,9 +67,9 @@ public class IPokedexTest extends TestCase {
 
             //when(pokedex.getPokemons()).thenReturn(pkmnList);
 
-            when(pokedex.getPokemons()).then(new Answer<ArrayList<Pokemon>>() {
+            when(pokedex.getPokemons()).then(new Answer<List<Pokemon>>() {
                 @Override
-                public ArrayList<Pokemon> answer(InvocationOnMock invocationOnMock) throws Throwable {
+                public List<Pokemon> answer(InvocationOnMock invocationOnMock) throws Throwable {
                     return pkmnList;
                 }
             });
@@ -117,23 +117,22 @@ public class IPokedexTest extends TestCase {
 
     @Test
     public void testGetPokemons() {
-
             List<Pokemon> aList = pokedex.getPokemons();
             assertEquals(2, aList.size());
 
     }
 
-    /*@Test
-    public void testGetPokemons() {
+    @Test
+    public void testGetPokemonsComparators() {
         PokemonComparators comp = PokemonComparators.INDEX;
-        ArrayList<Pokemon> list = pokedex.getPokemons();
+        List<Pokemon> list = pokedex.getPokemons();
         ArrayList<Pokemon> listComp = new ArrayList<>();
 
         listComp.add(aqualiPkmn);
         listComp.add(bulbizarrePkmn);
         listComp.sort(comp);
         assertEquals(list, listComp);
-    }*/
+    }
 
 
     public void testGetSize() {
