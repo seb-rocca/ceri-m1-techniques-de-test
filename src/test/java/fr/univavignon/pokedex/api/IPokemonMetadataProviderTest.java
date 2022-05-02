@@ -1,32 +1,33 @@
 package fr.univavignon.pokedex.api;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+
+import junit.framework.TestCase;
+import org.junit.Before;
+import org.junit.Test;
 import org.mockito.Mockito;
 
-import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 
-class IPokemonMetadataProviderTest {
+public class IPokemonMetadataProviderTest extends TestCase {
+
+    public IPokemonMetadataProviderTest()
+    {}
 
     IPokemonMetadataProvider pkmnMetadataProvider = Mockito.mock(IPokemonMetadataProvider.class);
 
     PokemonMetadata bulbizarrePkmn = new PokemonMetadata(0, "Bulbizarre", 126, 126, 90);
     PokemonMetadata aqualiPkmn = new PokemonMetadata(133, "Aquali", 186, 168, 260);
 
-
-
-    @BeforeEach
-    void setup()
+    @Before
+    public void setUp()
     {
         try
         {
             when(pkmnMetadataProvider.getPokemonMetadata(0)).thenReturn(bulbizarrePkmn);
             when(pkmnMetadataProvider.getPokemonMetadata(133)).thenReturn(aqualiPkmn);
-
-
         }
         catch (Exception e)
         {
@@ -35,7 +36,7 @@ class IPokemonMetadataProviderTest {
     }
 
     @Test
-    void shouldGetBulbizarreIndex() {
+    public void testShouldGetBulbizarreIndex() {
         try {
             PokemonMetadata bulbizarreMeta = pkmnMetadataProvider.getPokemonMetadata(0);
             assertEquals(bulbizarreMeta.getIndex(), 0);
@@ -48,7 +49,7 @@ class IPokemonMetadataProviderTest {
     }
 
     @Test
-    void shouldGetBulbizarreName() {
+    public void testShouldGetBulbizarreName() {
         try {
             PokemonMetadata bulbizarreMeta = pkmnMetadataProvider.getPokemonMetadata(0);
             assertEquals(bulbizarreMeta.getName(), "Bulbizarre");
@@ -61,7 +62,7 @@ class IPokemonMetadataProviderTest {
     }
 
     @Test
-    void shouldGetBulbizarreAttack() {
+    public void testShouldGetBulbizarreAttack() {
         try {
             PokemonMetadata bulbizarreMeta = pkmnMetadataProvider.getPokemonMetadata(0);
             assertEquals(bulbizarreMeta.getAttack(), 126);
@@ -74,7 +75,7 @@ class IPokemonMetadataProviderTest {
     }
 
     @Test
-    void shouldGetBulbizarreDefense() {
+    public void testShouldGetBulbizarreDefense() {
         try {
             PokemonMetadata bulbizarreMeta = pkmnMetadataProvider.getPokemonMetadata(0);
             assertEquals(bulbizarreMeta.getDefense(), 126);
@@ -87,7 +88,7 @@ class IPokemonMetadataProviderTest {
     }
 
     @Test
-    void shouldGetBulbizarreStamina() {
+    public void testShouldGetBulbizarreStamina() {
         try {
             PokemonMetadata bulbizarreMeta = pkmnMetadataProvider.getPokemonMetadata(0);
             assertEquals(bulbizarreMeta.getStamina(), 90);
@@ -101,7 +102,7 @@ class IPokemonMetadataProviderTest {
 
 
     @Test
-    void shouldGetAqualiIndex()
+    public void testShouldGetAqualiIndex()
     {
         try {
             PokemonMetadata aqualiMeta = pkmnMetadataProvider.getPokemonMetadata(133);
@@ -114,7 +115,7 @@ class IPokemonMetadataProviderTest {
     }
 
     @Test
-    void shouldGetAqualiName() {
+    public void testShouldGetAqualiName() {
         try {
             PokemonMetadata aqualiMeta = pkmnMetadataProvider.getPokemonMetadata(133);
             assertEquals(aqualiMeta.getName(), "Aquali");
@@ -127,7 +128,7 @@ class IPokemonMetadataProviderTest {
     }
 
     @Test
-    void shouldGetAqualiAttack() {
+    public void testShouldGetAqualiAttack() {
         try {
             PokemonMetadata aqualiMeta = pkmnMetadataProvider.getPokemonMetadata(133);
             assertEquals(aqualiMeta.getAttack(), 186);
@@ -140,7 +141,7 @@ class IPokemonMetadataProviderTest {
     }
 
     @Test
-    void shouldGetAqualiDefense() {
+    public void testShouldGetAqualiDefense() {
         try {
             PokemonMetadata aqualiMeta = pkmnMetadataProvider.getPokemonMetadata(133);
             assertEquals(aqualiMeta.getDefense(), 168);
@@ -153,7 +154,7 @@ class IPokemonMetadataProviderTest {
     }
 
     @Test
-    void shouldGetAqualiStamina() {
+    public void testShouldGetAqualiStamina() {
         try {
             PokemonMetadata aqualiMeta = pkmnMetadataProvider.getPokemonMetadata(133);
             assertEquals(aqualiMeta.getStamina(), 260);

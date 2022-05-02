@@ -1,13 +1,17 @@
 package fr.univavignon.pokedex.api;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import junit.framework.TestCase;
+import org.junit.Before;
+import org.junit.Test;
 import org.mockito.Mockito;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 
-class IPokemonTrainerFactoryTest {
+public class IPokemonTrainerFactoryTest extends TestCase {
+
+    public IPokemonTrainerFactoryTest()
+    {}
 
     IPokemonTrainerFactory pkmnTrainerFactory = Mockito.mock(IPokemonTrainerFactory.class);
     IPokedexFactory pokedexFactory = Mockito.mock(IPokedexFactory.class);
@@ -16,8 +20,8 @@ class IPokemonTrainerFactoryTest {
     Team team = Team.INSTINCT;
     PokemonTrainer ash = new PokemonTrainer("Ash", team, pokedex);
 
-    @BeforeEach
-    void setup()
+    @Before
+    public void setUp()
     {
         try {
             when(pkmnTrainerFactory.createTrainer("Ash", team, pokedexFactory)).thenReturn(ash);
@@ -29,7 +33,7 @@ class IPokemonTrainerFactoryTest {
     }
 
     @Test
-    void createTrainer() {
+    public void testCreateTrainer() {
         try {
             PokemonTrainer trainer = pkmnTrainerFactory.createTrainer("Ash", team, pokedexFactory);
             assertEquals(trainer.getName(), "Ash");

@@ -1,21 +1,21 @@
 package fr.univavignon.pokedex.api;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
+import junit.framework.TestCase;
+import org.junit.Before;
+import org.junit.Test;
 import org.mockito.Mockito;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
-class IPokemonFactoryTest {
+public class IPokemonFactoryTest extends TestCase {
 
+    public IPokemonFactoryTest(){}
 
     IPokemonFactory pkmnFacto = Mockito.mock(IPokemonFactory.class);
     Pokemon bulbizarre = new Pokemon(0, "Bulbizarre", 126, 126, 90, 613, 64, 4000, 4, 56);
 
-    @BeforeEach
-    void setup()
+    @Before
+    public void setUp()
     {
         try {
             when(pkmnFacto.createPokemon(0, 613, 64, 4000, 4 )).thenReturn(bulbizarre);
@@ -27,7 +27,7 @@ class IPokemonFactoryTest {
     }
 
     @Test
-    void createPokemonBulbizarre() {
+    public void testCreatePokemonBulbizarre() {
         Pokemon pkmn = pkmnFacto.createPokemon(0, 613, 64, 4000, 4);
         assertEquals(0, pkmn.getIndex());
         assertEquals(613, pkmn.getCp());

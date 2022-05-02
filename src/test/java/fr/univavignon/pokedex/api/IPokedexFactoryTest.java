@@ -1,15 +1,17 @@
 package fr.univavignon.pokedex.api;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+import junit.framework.TestCase;
+import org.junit.Before;
+import org.junit.Test;
 import org.mockito.Mockito;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.mock;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 
-class IPokedexFactoryTest {
+public class IPokedexFactoryTest extends TestCase {
 
+    public IPokedexFactoryTest(){}
 
     IPokedexFactory pokedexF = Mockito.mock(IPokedexFactory.class);
 
@@ -18,8 +20,8 @@ class IPokedexFactoryTest {
 
     IPokedex pokedex = Mockito.mock(IPokedex.class);
 
-    @BeforeEach
-    void setup()
+    @Before
+    public void setUp()
     {
         try {
             when(pokedexF.createPokedex(metaProvider, pkmnFactory)).thenReturn(pokedex);
@@ -31,7 +33,7 @@ class IPokedexFactoryTest {
     }
 
     @Test
-    void createPokedex()
+    public void testCeatePokedex()
     {
         assertEquals(pokedexF.createPokedex(metaProvider, pkmnFactory), pokedex);
     }

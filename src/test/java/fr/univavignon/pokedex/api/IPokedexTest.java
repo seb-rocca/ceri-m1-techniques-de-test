@@ -1,6 +1,8 @@
 package fr.univavignon.pokedex.api;
 
-import org.junit.jupiter.api.BeforeEach;
+import junit.framework.TestCase;
+import org.junit.Before;
+import org.junit.Test;
 import org.mockito.Mockito;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
@@ -8,11 +10,14 @@ import org.mockito.stubbing.Answer;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
-class IPokedexTest {
+public class IPokedexTest extends TestCase {
+
+    public IPokedexTest(){
+
+    }
 
     IPokedex pokedex = Mockito.mock(IPokedex.class);
 
@@ -21,8 +26,8 @@ class IPokedexTest {
 
     ArrayList<Pokemon> pkmnList = new ArrayList<>();
 
-    @BeforeEach
-    void setup()
+    @Before
+    public void setUp()
     {
         try {
             pkmnList.add(bulbizarrePkmn);
@@ -60,7 +65,24 @@ class IPokedexTest {
             });
 
 
-            when(pokedex.getPokemons()).thenReturn(pkmnList);
+            //when(pokedex.getPokemons()).thenReturn(pkmnList);
+
+            when(pokedex.getPokemons()).then(new Answer<ArrayList<Pokemon>>() {
+                @Override
+                public ArrayList<Pokemon> answer(InvocationOnMock invocationOnMock) throws Throwable {
+                    return pkmnList;
+                }
+            });
+
+            when(pokedex.getPokemons(any())).then(new Answer<ArrayList<Pokemon>>() {
+                @Override
+                public ArrayList<Pokemon> answer(InvocationOnMock invocationOnMock) throws Throwable {
+                    PokemonComparators pokemonComparators = PokemonComparators.INDEX;
+                    //ArrayList<Pokemon> list =  new ArrayList<>();
+                    pkmnList.sort(pokemonComparators);
+                    return pkmnList;
+                }
+            });
 
         }
         catch (Exception e)
@@ -69,8 +91,8 @@ class IPokedexTest {
         }
     }
 
-    @org.junit.jupiter.api.Test
-    void addPokemon() {
+    @Test
+    public void testAddPokemon() {
         try {
             int index = pokedex.addPokemon(bulbizarrePkmn);
             assertEquals(index, 0);
@@ -81,8 +103,8 @@ class IPokedexTest {
         }
     }
 
-    @org.junit.jupiter.api.Test
-    void getPokemon() {
+    @Test
+    public void testgetPokemon() {
         try {
             Pokemon pkmn = pokedex.getPokemon(0);
             assertEquals(pkmn, bulbizarrePkmn);
@@ -93,27 +115,28 @@ class IPokedexTest {
         }
     }
 
-    @org.junit.jupiter.api.Test
-    void getPokemons() {
+    @Test
+    public void testGetPokemons() {
 
             List<Pokemon> aList = pokedex.getPokemons();
             assertEquals(2, aList.size());
 
     }
 
-    @org.junit.jupiter.api.Test
-    void testGetPokemons() {
-
-        PokemonComparators pokemonComparators = PokemonComparators.INDEX;
-        pkmnList.sort(pokemonComparators);
+    /*@Test
+    public void testGetPokemons() {
+        PokemonComparators comp = PokemonComparators.INDEX;
+        ArrayList<Pokemon> list = pokedex.getPokemons();
         ArrayList<Pokemon> listComp = new ArrayList<>();
-        listComp.add(bulbizarrePkmn);
-        listComp.add(aqualiPkmn);
-        assertEquals(pkmnList, listComp);
-    }
 
-    @org.junit.jupiter.api.Test
-    void getSize() {
+        listComp.add(aqualiPkmn);
+        listComp.add(bulbizarrePkmn);
+        listComp.sort(comp);
+        assertEquals(list, listComp);
+    }*/
+
+
+    public void testGetSize() {
         try {
             int size = pokedex.size();
             assertEquals(size, 2);
