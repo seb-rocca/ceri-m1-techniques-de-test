@@ -16,7 +16,7 @@ public class IPokemonMetadataProviderTest extends TestCase {
     public IPokemonMetadataProviderTest()
     {}
 
-    IPokemonMetadataProvider pkmnMetadataProvider = Mockito.mock(IPokemonMetadataProvider.class);
+    PokemonMetadataProvider pkmnMetadataProvider = new PokemonMetadataProvider();
 
     PokemonMetadata bulbizarrePkmn = new PokemonMetadata(0, "Bulbizarre", 126, 126, 90);
     PokemonMetadata aqualiPkmn = new PokemonMetadata(133, "Aquali", 186, 168, 260);
@@ -26,8 +26,8 @@ public class IPokemonMetadataProviderTest extends TestCase {
     {
         try
         {
-            when(pkmnMetadataProvider.getPokemonMetadata(0)).thenReturn(bulbizarrePkmn);
-            when(pkmnMetadataProvider.getPokemonMetadata(133)).thenReturn(aqualiPkmn);
+            //when(pkmnMetadataProvider.getPokemonMetadata(0)).thenReturn(bulbizarrePkmn);
+            //when(pkmnMetadataProvider.getPokemonMetadata(133)).thenReturn(aqualiPkmn);
         }
         catch (Exception e)
         {

@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 public class IPokedexTest extends TestCase {
@@ -19,7 +20,12 @@ public class IPokedexTest extends TestCase {
 
     }
 
-    IPokedex pokedex = Mockito.mock(IPokedex.class);
+    /*IPokedex pokedex = Mockito.mock(IPokedex.class);*/
+
+    PokemonMetadataProvider metaProvider = new PokemonMetadataProvider();
+
+    PokemonFactory pkmnFactory = new PokemonFactory();
+    Pokedex pokedex = new Pokedex(metaProvider, pkmnFactory);
 
     Pokemon bulbizarrePkmn = new Pokemon(0, "Bulbizarre", 126, 126, 90, 613, 64, 4000, 4, 56);
     Pokemon aqualiPkmn = new Pokemon(133, "Aquali", 186, 168, 260, 2729, 202, 5000, 4, 100);
@@ -32,6 +38,8 @@ public class IPokedexTest extends TestCase {
         try {
             pkmnList.add(bulbizarrePkmn);
             pkmnList.add(aqualiPkmn);
+            pokedex.addPokemon(bulbizarrePkmn);
+            pokedex.addPokemon(aqualiPkmn);
 
             when(pokedex.getPokemon(any(Integer.class))).then(new Answer<Pokemon>() {
                 @Override
@@ -131,14 +139,14 @@ public class IPokedexTest extends TestCase {
         listComp.add(aqualiPkmn);
         listComp.add(bulbizarrePkmn);
         listComp.sort(comp);
-        assertEquals(list, listComp);
+        assertEquals(listComp, list);
     }
 
 
     public void testGetSize() {
         try {
             int size = pokedex.size();
-            assertEquals(size, 2);
+            assertEquals(2, size);
         }
         catch (Exception e)
         {

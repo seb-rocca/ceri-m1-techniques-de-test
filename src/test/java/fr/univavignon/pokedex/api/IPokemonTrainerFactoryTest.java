@@ -13,9 +13,18 @@ public class IPokemonTrainerFactoryTest extends TestCase {
     public IPokemonTrainerFactoryTest()
     {}
 
-    IPokemonTrainerFactory pkmnTrainerFactory = Mockito.mock(IPokemonTrainerFactory.class);
+    /*IPokemonTrainerFactory pkmnTrainerFactory = Mockito.mock(IPokemonTrainerFactory.class);
     IPokedexFactory pokedexFactory = Mockito.mock(IPokedexFactory.class);
-    IPokedex pokedex = Mockito.mock(IPokedex.class);
+    IPokedex pokedex = Mockito.mock(IPokedex.class);*/
+
+    PokemonTrainerFactory pkmnTrainerFactory = new PokemonTrainerFactory();
+    PokedexFactory pokedexFactory = new PokedexFactory();
+
+    PokemonMetadataProvider metadataProvider = new PokemonMetadataProvider();
+
+    PokemonFactory pkmnFactory = new PokemonFactory();
+
+    Pokedex pokedex = new Pokedex(metadataProvider, pkmnFactory);
 
     Team team = Team.INSTINCT;
     PokemonTrainer ash = new PokemonTrainer("Ash", team, pokedex);

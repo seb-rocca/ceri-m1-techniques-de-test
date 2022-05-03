@@ -13,18 +13,26 @@ public class IPokedexFactoryTest extends TestCase {
 
     public IPokedexFactoryTest(){}
 
-    IPokedexFactory pokedexF = Mockito.mock(IPokedexFactory.class);
+    PokedexFactory pokedexFactory = new PokedexFactory();
+
+    PokemonMetadataProvider metaProvider = new PokemonMetadataProvider();
+
+    PokemonFactory pkmnFactory = new PokemonFactory();
+
+    Pokedex pokedex = new Pokedex(metaProvider, pkmnFactory);
+
+    /*IPokedexFactory pokedexF = Mockito.mock(IPokedexFactory.class);
 
     IPokemonMetadataProvider metaProvider = Mockito.mock(IPokemonMetadataProvider.class);
     IPokemonFactory pkmnFactory = Mockito.mock(IPokemonFactory.class);
 
-    IPokedex pokedex = Mockito.mock(IPokedex.class);
+    IPokedex pokedex = Mockito.mock(IPokedex.class);*/
 
     @Before
     public void setUp()
     {
         try {
-            when(pokedexF.createPokedex(metaProvider, pkmnFactory)).thenReturn(pokedex);
+            //when(pokedexF.createPokedex(metaProvider, pkmnFactory)).thenReturn(pokedex);
         }
         catch (Exception e)
         {
@@ -35,6 +43,6 @@ public class IPokedexFactoryTest extends TestCase {
     @Test
     public void testCeatePokedex()
     {
-        assertEquals(pokedexF.createPokedex(metaProvider, pkmnFactory), pokedex);
+        assertEquals(pokedex.getClass(), pokedexFactory.createPokedex(metaProvider, pkmnFactory).getClass());
     }
 }
