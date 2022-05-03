@@ -31,6 +31,7 @@ public class Pokedex implements IPokedex {
 
     @Override
     public Pokemon getPokemon(int id) throws PokedexException {
+        if(id < 0 || id >150 || pokedexList.get(id) == null) throw new PokedexException("Id invalide");
         return pokedexList.get(id);
     }
 
