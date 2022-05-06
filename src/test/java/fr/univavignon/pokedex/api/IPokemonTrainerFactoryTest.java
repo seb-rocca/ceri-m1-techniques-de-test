@@ -33,7 +33,7 @@ public class IPokemonTrainerFactoryTest extends TestCase {
     public void setUp()
     {
         try {
-            when(pkmnTrainerFactory.createTrainer("Ash", team, pokedexFactory)).thenReturn(ash);
+            //when(pkmnTrainerFactory.createTrainer("Ash", team, pokedexFactory)).thenReturn(ash);
         }
         catch (Exception e)
         {
@@ -45,9 +45,9 @@ public class IPokemonTrainerFactoryTest extends TestCase {
     public void testCreateTrainer() {
         try {
             PokemonTrainer trainer = pkmnTrainerFactory.createTrainer("Ash", team, pokedexFactory);
-            assertEquals(trainer.getName(), "Ash");
-            assertEquals(trainer.getPokedex(), pokedex);
-            assertEquals(trainer.getTeam(), team);
+            assertEquals(ash.getName(), trainer.getName());
+            assertEquals(ash.getPokedex().getClass(), trainer.getPokedex().getClass());
+            assertEquals(ash.getTeam(), trainer.getTeam());
         }
         catch (Exception e)
         {
