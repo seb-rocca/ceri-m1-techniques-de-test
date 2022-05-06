@@ -7,6 +7,8 @@
 
 [![codecov](https://codecov.io/gh/seb-rocca/ceri-m1-techniques-de-test/branch/master/graph/badge.svg?token=623SE4YA3X)](https://codecov.io/gh/seb-rocca/ceri-m1-techniques-de-test)
 [![CircleCi](https://circleci.com/gh/seb-rocca/ceri-m1-techniques-de-test.svg?style=svg)](https://app.circleci.com/pipelines/github/seb-rocca/ceri-m1-techniques-de-test)
+![Checkstyle](./target/site/badges/checkstyle-result.svg)
+
 
 ## Note pour l'évaluation
 
