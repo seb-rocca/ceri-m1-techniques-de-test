@@ -36,25 +36,25 @@ jobs:
   docs-build:
     docker:
       - image: cimg/base:2021.04
-      steps:
+    steps:
         # Checkout the code as the first step.
-        - checkout
+      - checkout
         # Use mvn clean and package as the standard maven build phase
-        - run:
-            name: install1
-            command: sudo add-apt-repository ppa:openjdk-r/ppa
-        - run:
-            name: install2
-            command: sudo apt-get update
-        - run:
-            name: install3
-            command: sudo apt-get install openjdk-11-jdk-headless -y
-        - run:
-            name: Build-docs
-            command: javadoc src/main/java/fr/univavignon/pokedex/api/* -d docs #/src\main\java\fr\univavignon\pokedex\api
-        - persist_to_workspace:
-            root: .
-            paths: doc
+      - run:
+          name: install1
+          command: sudo add-apt-repository ppa:openjdk-r/ppa
+      - run:
+          name: install2
+          command: sudo apt-get update
+      - run:
+          name: install3
+          command: sudo apt-get install openjdk-11-jdk-headless -y
+      - run:
+          name: Build-docs
+          command: javadoc src/main/java/fr/univavignon/pokedex/api/* -d docs #/src\main\java\fr\univavignon\pokedex\api
+      - persist_to_workspace:
+          root: .
+          paths: doc
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
