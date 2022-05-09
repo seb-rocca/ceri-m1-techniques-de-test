@@ -50,6 +50,9 @@ jobs:
           name: install3
           command: sudo apt-get install openjdk-11-jdk-headless -y
       - run:
+          name: install maven
+          command: sudo apt install maven
+      - run:
           name: Build
           command: mvn -B -DskipTests clean package
       - run:
