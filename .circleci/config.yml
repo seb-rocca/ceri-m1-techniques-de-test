@@ -35,15 +35,26 @@ jobs:
 
   docs-build:
     docker:
-      - image: cimg/openjdk:11.0
-    steps:
-      - checkout
-      - run:
-          name: create javadoc folder
-          command: mkdir docs
-      - run:
-          name: Run javadoc generator
-          command: javadoc -d docs -sourcepath src -subpackages main
+      - image: cimg/base:2021.04
+      steps:
+        # Checkout the code as the first step.
+        - checkout
+        # Use mvn clean and package as the standard maven build phase
+        - run:
+            name: install1
+            command: sudo add-apt-repository ppa:openjdk-r/ppa
+        - run:
+            name: install2
+            command: sudo apt-get update
+        - run:
+            name: install3
+            command: sudo apt-get install openjdk-11-jdk-headless -y
+        - run:
+            name: Build-docs
+            command: javadoc src/main/java/fr/univavignon/pokedex/api/* -d docs #/src\main\java\fr\univavignon\pokedex\api
+        - persist_to_workspace:
+            root: .
+            paths: doc
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
