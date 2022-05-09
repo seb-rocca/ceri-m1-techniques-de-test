@@ -40,7 +40,7 @@ jobs:
     steps:
       - checkout
       - attach_workspace:
-          at: docs/_build
+          at: target
       - run:
           name: Install and configure dependencies
           command: |
