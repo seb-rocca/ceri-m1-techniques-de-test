@@ -50,6 +50,9 @@ jobs:
           name: install3
           command: sudo apt-get install openjdk-11-jdk-headless -y
       - run:
+          name: Build
+          command: mvn -B -DskipTests clean package
+      - run:
           name: Build-docs
           command: javadoc src/main/java/fr/univavignon/pokedex/api/* -d docs #/src\main\java\fr\univavignon\pokedex\api
       - persist_to_workspace:
