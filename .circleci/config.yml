@@ -33,31 +33,6 @@ jobs:
           command: mvn test
       - codecov/upload
 
-  docs-build:
-    docker:
-      - image: cimg/base:2021.04
-    steps:
-        # Checkout the code as the first step.
-      - checkout
-        # Use mvn clean and package as the standard maven build phase
-      - run:
-          name: install1
-          command: sudo add-apt-repository ppa:openjdk-r/ppa
-      - run:
-          name: install2
-          command: sudo apt-get update
-      - run:
-          name: install3
-          command: sudo apt-get install openjdk-11-jdk-headless -y
-      - run:
-          name: Build
-          command: mvn -B -DskipTests clean package
-      - run:
-          name: Build-docs
-          command: javadoc src/main/java/fr/univavignon/pokedex/api/* -d docs #/src\main\java\fr\univavignon\pokedex\api
-      - persist_to_workspace:
-          root: .
-          paths: doc
 
   docs-deploy:
     docker:
@@ -83,6 +58,5 @@ workflows:
     # Inside the workflow, you define the jobs you want to run.
     jobs:
       - build-and-test
-      - docs-build
       - docs-deploy
 
