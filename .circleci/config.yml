@@ -39,7 +39,7 @@ jobs:
     steps:
       - checkout
       - attach_workspace:
-          at: target
+          at: target/apidocs
       - run:
           name: Install and configure dependencies
           command: |
@@ -48,7 +48,10 @@ jobs:
             git config user.name "ci-build"
       - run:
           name: Deploy docs to gh-pages branch
-          command: gh-pages --dist target/apidocs/
+          command: gh-pages --dist target/apidocs
+      - add_ssh_keys:
+          fingerprints:
+            - "24:9e:69:6e:7a:ba:8d:35:7e:1d:39:40:bb:45:3f:69"
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
