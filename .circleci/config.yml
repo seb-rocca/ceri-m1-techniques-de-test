@@ -32,8 +32,6 @@ jobs:
           name: Test
           command: mvn test
       - codecov/upload
-      - docs-deploy
-
 
   docs-deploy:
     docker:
@@ -59,5 +57,5 @@ workflows:
     # Inside the workflow, you define the jobs you want to run.
     jobs:
       - build-and-test
-      #- docs-deploy
+      - docs-deploy
 
